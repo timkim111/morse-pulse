@@ -1,0 +1,114 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<title>MorsePulse</title>
+<script>
+
+var tab = {'a': '._ ', 'b': '-... ', 'c': '-.-. ', 'd': '-.. ', 'e': '. ',
+'f': '..-. ', 'g': '--. ', 'h': '.... ', 'i': '.. ',
+'j': '.--- ', 'k': '-.- ', 'l': '.-.. ', 'm': '-- ',
+'n': '-, ', 'o': '--- ', 'p': '.--. ', 'q': '--.- ',
+'r': '.-. ', 's': '... ', 't': '- ', 'u': '..- ',
+'v': '...- ', 'w': '.-- ', 'x': '-..- ', 'y': '-.-- ',
+'z': '--.. ', '1': '.---- ', '2': '..--- ', '3': '...-- ',
+'4': '....- ', '5': '..... ', '6': '-....', '7': '--...',
+'8': '---.. ', '9': '----. ', '0': '----- ', ' ': '/ '
+};
+
+function translate(engstring) {
+engstring = engstring.toLowerCase();
+var translated = '';
+for (char in engstring){
+translated += tab[engstring[char]];
+};
+return translated}
+
+
+	function flick() {
+		flickr(translate(document.getElementById('form2').value), 0, 0)
+	}
+
+	function change(){
+		if (document.body.style.backgroundColor === 'rgb(0, 0, 205)'){
+			document.body.style.backgroundColor = 'rgb(225, 215, 0)';}
+		else {document.body.style.backgroundColor = 'rgb(0, 0, 205)';}
+	}
+
+	function wait(){
+		return
+	}
+
+	function flickr(mstring, position, fudge){
+		if (mstring.length-1 == position) {
+			return}
+		if (mstring[position] == '.'){
+			window.setTimeout(change, fudge + 100)
+			window.setTimeout(change, fudge + 100 + 100)
+			return flickr(mstring, position+1, fudge + 200)
+		}
+		else if (mstring[position] == '-'){
+			window.setTimeout(change, fudge + 100)
+			window.setTimeout(change, fudge + 100 + 300)
+			return flickr(mstring, position + 1, fudge + 400)
+			}
+		else if (mstring[position] == ' '){
+			window.setTimeout(wait, 200 + fudge)
+			return flickr(mstring, position + 1, fudge + 200)
+		}
+		else if (mstring[position] == '/'){
+			window.setTimeout(wait, 500 + fudge)
+			return flickr(mstring, position + 1, fudge + 500)
+		}
+	
+
+
+
+
+
+</script>
+
+	
+<head>
+	
+	<style type="text/css">
+	body {
+		color: #C71585;
+		background-color: #FFD700 }
+	h1 {text-align:center;
+		font-size:350%;
+		text-shadow: 5px 5px 5px;
+		}
+	p {text-align:center;
+		}
+		
+
+	
+	
+	</style>
+</head>	
+
+<body>
+
+<h1>Welcome to the Morse Pulse</h1>
+
+
+
+<p>This hack changes the background color in morse code!</p>
+
+<div style= "text-align: center;"><form id="eng">
+Type English Here <input type="text" name="english" id='form2'>
+</form></div>
+
+<div style = "text-align: center;"><button onclick="flick()">Play Morse Code!</button></div>
+
+<br>
+<br>
+
+<marquee behavior="alternate"><img src= http://blog.likebright.com/wp-content/uploads/2013/04/DancingBear.gif alt= "dancing bear distraction!!" ></marquee>
+
+</body>
+
+</html>
+
